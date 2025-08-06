@@ -17,6 +17,7 @@ public class BookRepositoryImpl implements BookRepository {
     public BookRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
     @Override
     public Book save(Book book) {
         Session session = null;

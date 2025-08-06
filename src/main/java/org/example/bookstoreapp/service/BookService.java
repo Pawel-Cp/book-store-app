@@ -5,7 +5,7 @@ import org.example.bookstoreapp.model.Book;
 
 public interface BookService {
 
-    Book save (Book book);
+    Book save(Book book);
 
     List<Book> findAll();
 }
