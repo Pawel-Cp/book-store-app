@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class BookRepositoryImpl implements BookRepository {
-
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -42,7 +41,10 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public List<Book> findAll() {
-        Session session = sessionFactory.openSession();
-        return session.createQuery(" SELECT b from Book b", Book.class).getResultList();
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery(" SELECT b from Book b", Book.class).getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't find execute method find all!", e);
+        }
     }
 }
