@@ -1,0 +1,19 @@
+package org.example.bookstoreapp.dto;
+
+import java.math.BigDecimal;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@RequiredArgsConstructor
+public class BookDto {
+    private Long id;
+    private String author;
+    private String title;
+    private String isbn;
+    private BigDecimal price;
+    private String description;
+    private String coverImage;
+}
