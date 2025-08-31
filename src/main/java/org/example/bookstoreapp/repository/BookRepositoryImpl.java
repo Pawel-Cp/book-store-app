@@ -24,6 +24,7 @@ public class BookRepositoryImpl implements BookRepository {
             transaction = entityManager.getTransaction();
             transaction.begin();
             entityManager.persist(book);
+            transaction.commit();
             return book;
         } catch (Exception e) {
             if (transaction != null) {
@@ -45,10 +46,6 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public Optional<Book> getBookById(Long id) {
-        Book bookById = entityManagerFactory.createEntityManager().createQuery(
-                        "SELECT b FROM Book b WHERE :id = id", Book.class)
-                .setParameter("id", id)
-                .getSingleResult();
-        return Optional.ofNullable(bookById);
+        return Optional.ofNullable(entityManagerFactory.createEntityManager().find(Book.class, id));
     }
 }
